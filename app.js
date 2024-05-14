@@ -138,7 +138,7 @@ app.post("/qr/generate", async (req, res) => {
 
     // Generate encrypted data
     const encryptedData = jwt.sign(
-      { userId: user._id },
+      { userId: user._id, email: user.email},
       process.env.TOKEN_KEY,
       {
         expiresIn: "1d",
