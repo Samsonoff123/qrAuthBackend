@@ -12,6 +12,22 @@ const app = express();
 
 app.use(express.json());
 
+app.post("/user", async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    if (!(email)) {
+      res.status(400).send("Email is required");
+    }
+
+    const user = await User.findOne({ email });
+    res.status(201).json({ user });
+
+  } catch (error) {
+    console.log(err);
+  }
+})
+
 app.post("/register", async (req, res) => {
   // Our register logic starts here
 
