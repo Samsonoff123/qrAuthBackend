@@ -1,4 +1,5 @@
 require("dotenv").config();
+const cors = require('cors')
 require("./config/database").connect();
 const express = require("express");
 const bcrypt = require("bcryptjs");
@@ -17,6 +18,8 @@ app.use((req, res, next) => {
   res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
   next();
 });
+
+app.use(cors())
 
 app.use(express.json());
 
